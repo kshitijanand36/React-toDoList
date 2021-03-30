@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Item(props){
 
+
+    function handleClick(){
+
+        props.deleteElement(props.id);
+
+    }
+
+    
     return (
         
-        <li>{props.item} </li>
+        <li  onClick = {handleClick}>{props.item} </li>
     )
 }
 

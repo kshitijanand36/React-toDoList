@@ -1,25 +1,21 @@
 import React, {useState} from "react";
 import Item from "./item";
 
-let cnt = 0;
-
-function createItem(props){
-
-    cnt++;
-
-    return (
-        <Item 
-        key = {cnt}
-        item = {props }
-        />
-    )
-}
 
 function App(){
     
     let [currWord , setCurrWord ] = useState("");
     let [newArr , setNewArr ] = useState(["Type anything and click on Add!"]);
 
+    function deleteElement(id){
+
+        setNewArr(prevArr=>{
+            return prevArr.filter((newArr,idx) =>{
+
+                return idx!==id;
+            })
+        })
+    }
 
     function handleSubmit(){
     
@@ -33,8 +29,6 @@ function App(){
     function handleChange(event){
         setCurrWord(event.target.value);
     }
-
-    // console.log(arr);
     
   return (
     <div className="container">
@@ -49,7 +43,16 @@ function App(){
       </div>
       <div>
         <ul>
-          {newArr.map(createItem)}
+          {newArr.map((props, idx) =>
+             (
+                <Item 
+                    key = {idx}
+                    id = {idx}
+                    item = {props }
+                    deleteElement = {deleteElement}
+                />
+            )
+          )}
         </ul>
       </div>
     </div>
