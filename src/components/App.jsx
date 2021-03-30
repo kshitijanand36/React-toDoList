@@ -18,14 +18,13 @@ function createItem(props){
 function App(){
     
     let [currWord , setCurrWord ] = useState("");
-    let [newArr , setNewArr ] = useState(["nothing"]);
+    let [newArr , setNewArr ] = useState(["Type anything and click on Add!"]);
 
 
     function handleSubmit(){
     
         setNewArr(prevArr=>{
-            prevArr.push(currWord);
-            return prevArr;
+            return [...prevArr, currWord];
         });
         setCurrWord("");   
         
